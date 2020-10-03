@@ -65,6 +65,7 @@ function displaySubmissions() {
     let totalSalariesValue = 0
     for (let i = 0; i < submissionEntries.length; i++) {
       totalSalariesValue += Number(submissionEntries[i].annualSalary) / 12;
+      totalSalariesValue = Math.ceil(totalSalariesValue);
     } // end of sum of salaries
     console.log('Total Value ' + totalSalariesValue)
     let el = $('#totalSalaries');
