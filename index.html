@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery.js"></script>
+    <script src="scripts.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Salary Calculator</h1>
+    </header>
+    <div class="inputBar">
+        <h2>Add Employee</h2>
+        <label htmlFor="firstName">First Name:</label>
+         <input type="text" id='firstName' class="inputField"></input>
+
+        <label htmlFor="lastName">Last Name:</label>
+         <input type="text" id='lastName' class="inputField"></input>
+
+        <label htmlFor="id">ID:</label>
+         <input type="text" id='iD' class="inputField"></input>
+
+        <label htmlFor="title">Title:</label>
+         <input type="text" id='title' class="inputField"></input>
+
+        <label htmlFor="annualSalary">Annual Salary:</label>
+          <input type="text" id='annualSalary' class="inputField"></input>
+
+        <button id="submitBtn">Submit</button>
+
+    </div>
+    <h2>Employees</h2>
+    <div class="spreadSheet">
+        <ul id="submiteeList">
+            
+        </ul>
+    </div>
+    <div id="totalSalaries"></div>
+    
+</body>
+</html>
