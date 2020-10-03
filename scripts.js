@@ -23,7 +23,7 @@ function submitInfo() {
         iD: $('#iD').val(),
         title: $('#title').val(),
         annualSalary: $('#annualSalary').val(),
-    } 
+    } // Takes Values of inputs, combines them into an object
     if (newSubmission.firstName === '' || newSubmission.lastName === '' || newSubmission.iD === '' || newSubmission.title === '' || newSubmission.annualSalary === '') {
         console.log('Error, Not All Required Fields Filled in')
         return false
@@ -47,8 +47,10 @@ function submitInfo() {
 
 // Current Issue, Repeats all previous lines
 function displaySubmissions() {
+    el = $('.infoSubmitNow');
+    el.empty();
     for (submitee of submissionEntries) {
-      $('#submiteeSpreadSheetBody tr:last').after(`<tr>
+      $('#submiteeSpreadSheetBody tr:last').after(`<tr class='infoSubmitNow'>
       <td class ="info">${submitee.firstName}</td>
       <td class ="info">${submitee.lastName}</td>
       <td class ="info">${submitee.iD}</td>
@@ -62,13 +64,18 @@ function displaySubmissions() {
   function valueOfSalaries() {
     let totalSalariesValue = 0
     for (let i = 0; i < submissionEntries.length; i++) {
-      totalSalariesValue += Number(submissionEntries[i].annualSalary);
+      totalSalariesValue += Number(submissionEntries[i].annualSalary) / 12;
     } // end of sum of salaries
     console.log('Total Value ' + totalSalariesValue)
     let el = $('#totalSalaries');
     el.empty(totalSalariesValue);
-    el.append(`<h3>` + `Total Value of Annual Salaries: $` + totalSalariesValue + `</h3>`);
-  }// end of value of salaries
+    if (totalSalariesValue <= 20000) {
+        el.append(`<h3 id="onBudget">` + `Total Value of Annual Salaries: $` + totalSalariesValue + `</h3>`);
+    } // End of If checking within budget∂
+    else if (totalSalariesValue > 20000) {
+    el.append(`<h3 id="aboveBudget">` + `Total Value of Annual Salaries: $` + totalSalariesValue + `</h3>`);
+    } // End of If checking above budget
+  }// end of value of salaries monthly cost, flipping them red if over $20 K
 
   function removeSubmission() {
       $(this).parent().parent().remove();
