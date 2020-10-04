@@ -30,6 +30,10 @@ tbody {
     background-color: red;
 }
 
+.aboveBudget {
+    background-color: red;
+}
+
 /* #submiteeSpreadSheet, th {
     border: 1px solid black;
     border-collapse: collapse;

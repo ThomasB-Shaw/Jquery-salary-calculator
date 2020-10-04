@@ -53,7 +53,7 @@ function displaySubmissions() {
       $('#submiteeSpreadSheetBody tr:last').after(`<tr class='infoSubmitNow'>
       <td class ="info">${submitee.firstName}</td>
       <td class ="info">${submitee.lastName}</td>
-      <td class ="info">${submitee.iD}</td>
+      <td class ="idInput">${submitee.iD}</td>
       <td class ="info">${submitee.title}</td>
       <td class ="info">${submitee.annualSalary}</td>
       <td><button class='removeBtn'>Remove</button></td>
@@ -61,7 +61,7 @@ function displaySubmissions() {
     } // End of for loop, appends new submission to DOM as li's 
   } // End of displaySubmissions function, will submissions to DOM
 
-  function valueOfSalaries() {
+  function valueOfSalaries4() {
     let totalSalariesValue = 0
     for (let i = 0; i < submissionEntries.length; i++) {
       totalSalariesValue += Number(submissionEntries[i].annualSalary) / 12;
@@ -79,6 +79,12 @@ function displaySubmissions() {
   }// end of value of salaries monthly cost, flipping them red if over $20 K
 
   function removeSubmission() {
+      
+
+      let idInfo = $(this).parent().parent().find('.idInput').text();
+
+      submissionEntries = submissionEntries.filter( submissionEntry => submissionEntry.iD !== idInfo );
+
       $(this).parent().parent().remove();
       valueOfSalaries();
   } // Removes submitee line from the DOM
@@ -89,3 +95,22 @@ function displaySubmissions() {
 // Code thunderDome
   /////////////////////////////////////////////////////////////////////////
 //   el.append(`<li>` + submitee.firstName + ` ` + submitee.lastName + ` ` + submitee.iD + ` ` + submitee.title + ` $` + submitee.annualSalary + `<button class='removeBtn'>Remove</button></li>`);
+
+
+function valueOfSalaries() {
+    let totalSalariesValue = 0
+    for (let i = 0; i < submissionEntries.length; i++) {
+      totalSalariesValue += Number(submissionEntries[i].annualSalary) / 12;
+      totalSalariesValue = Math.ceil(totalSalariesValue);
+    } // end of sum of salaries
+    console.log('Total Value ' + totalSalariesValue)
+    let el = $('#totalMonthlySalary');
+    el.empty(totalSalariesValue);
+    el.text(`Total Value of Annual Salaries: $` + totalSalariesValue);
+    if (totalSalariesValue <= 20000) {
+        el.removeClass('aboveBudget');
+    } // End of If checking within budget
+    else if (totalSalariesValue > 20000) {
+    el.addClass('aboveBudget');
+    } // End of If checking above budget
+  }// end of value of salaries monthly cost, flipping them red if over $20 K
