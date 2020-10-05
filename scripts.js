@@ -5,16 +5,12 @@ let submissionEntries = [];
 
 $(document).ready(readyNow);
 
-
 function readyNow() {
     $('#submitBtn').on('click', submitInfo);
     $('#submiteeSpreadSheet').on('click', '.removeBtn' , removeSubmission)
 
     $('#totalSalaries').ready(valueOfSalaries);
 } // End of readyNow Function
-
-//////////////////////////////////////////////////////////////////////////////////////
-
 
 function submitInfo() {
     let newSubmission = {
@@ -58,46 +54,10 @@ function displaySubmissions() {
       <td class ="info">${submitee.annualSalary}</td>
       <td><button class='removeBtn'>Remove</button></td>
       </tr>`);
-    } // End of for loop, appends new submission to DOM as li's 
-  } // End of displaySubmissions function, will submissions to DOM
+    } // End of for loop, appends new submission to DOM as cells in a table
+  } // End of displaySubmissions function, will append new entries after the last TR within the table submissions to DOM
 
-  function valueOfSalaries4() {
-    let totalSalariesValue = 0
-    for (let i = 0; i < submissionEntries.length; i++) {
-      totalSalariesValue += Number(submissionEntries[i].annualSalary) / 12;
-      totalSalariesValue = Math.ceil(totalSalariesValue);
-    } // end of sum of salaries
-    console.log('Total Value ' + totalSalariesValue)
-    let el = $('#totalSalaries');
-    el.empty(totalSalariesValue);
-    if (totalSalariesValue <= 20000) {
-        el.append(`<h3 id="onBudget">` + `Total Value of Annual Salaries: $` + totalSalariesValue + `</h3>`);
-    } // End of If checking within budget∂
-    else if (totalSalariesValue > 20000) {
-    el.append(`<h3 id="aboveBudget">` + `Total Value of Annual Salaries: $` + totalSalariesValue + `</h3>`);
-    } // End of If checking above budget
-  }// end of value of salaries monthly cost, flipping them red if over $20 K
-
-  function removeSubmission() {
-      
-
-      let idInfo = $(this).parent().parent().find('.idInput').text();
-
-      submissionEntries = submissionEntries.filter( submissionEntry => submissionEntry.iD !== idInfo );
-
-      $(this).parent().parent().remove();
-      valueOfSalaries();
-  } // Removes submitee line from the DOM
-
-
-
-
-// Code thunderDome
-  /////////////////////////////////////////////////////////////////////////
-//   el.append(`<li>` + submitee.firstName + ` ` + submitee.lastName + ` ` + submitee.iD + ` ` + submitee.title + ` $` + submitee.annualSalary + `<button class='removeBtn'>Remove</button></li>`);
-
-
-function valueOfSalaries() {
+  function valueOfSalaries() {
     let totalSalariesValue = 0
     for (let i = 0; i < submissionEntries.length; i++) {
       totalSalariesValue += Number(submissionEntries[i].annualSalary) / 12;
@@ -106,7 +66,7 @@ function valueOfSalaries() {
     console.log('Total Value ' + totalSalariesValue)
     let el = $('#totalMonthlySalary');
     el.empty(totalSalariesValue);
-    el.text(`Total Value of Annual Salaries: $` + totalSalariesValue);
+    el.text(`Monthly Costs: $` + totalSalariesValue);
     if (totalSalariesValue <= 20000) {
         el.removeClass('aboveBudget');
     } // End of If checking within budget
@@ -114,3 +74,14 @@ function valueOfSalaries() {
     el.addClass('aboveBudget');
     } // End of If checking above budget
   }// end of value of salaries monthly cost, flipping them red if over $20 K
+
+  function removeSubmission() {
+      
+      let idInfo = $(this).parent().parent().find('.idInput').text();
+      submissionEntries = submissionEntries.filter( submissionEntry => submissionEntry.iD !== idInfo );
+      // targets id in the submissionEntries array and returns all objects that dont contain that id
+      $(this).parent().parent().remove();
+      valueOfSalaries();
+  } // End of removeSubmission Function.  Removes submitee line from the DOM as well as the main array.  Then updates the Monthly cost
+
+

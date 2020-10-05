@@ -3,8 +3,6 @@ body {
     background-color: wheat;
 }
 
-
-
 header {
     text-align: center;
     background-color: darkslategrey;
@@ -26,19 +24,23 @@ tbody {
     align-content: center;
 }
 
-#aboveBudget {
-    background-color: red;
-}
-
 .aboveBudget {
     background-color: red;
 }
 
-/* #submiteeSpreadSheet, th {
-    border: 1px solid black;
-    border-collapse: collapse;
+.idInput {
+    text-align: center;
 }
-#submiteeSpreadSheet, tr {
-    border: 1px solid black;
-    border-collapse: collapse;
-} */
+
+.removeBtn {
+    width: 40%;
+    margin: 0 auto;
+    display: block;
+}
+th {
+    background-color: gainsboro;
+}
+
+#totalMonthlySalary{
+    text-align: left;
+}
