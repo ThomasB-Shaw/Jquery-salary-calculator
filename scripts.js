@@ -63,7 +63,7 @@ function displaySubmissions() {
       totalSalariesValue += Number(submissionEntries[i].annualSalary) / 12;
       totalSalariesValue = Math.ceil(totalSalariesValue);
     } // end of sum of salaries
-    console.log('Total Value ' + totalSalariesValue)
+    console.log('Total Value ' + totalSalariesValue);
     let el = $('#totalMonthlySalary');
     el.empty(totalSalariesValue);
     el.text(`Monthly Costs: $` + totalSalariesValue);

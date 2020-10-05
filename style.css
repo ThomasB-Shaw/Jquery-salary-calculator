@@ -1,17 +1,18 @@
 
 body {
-    background-color: wheat;
+    background-color: whitesmoke;
 }
 
 header {
     text-align: center;
-    background-color: darkslategrey;
-    color: silver;
+    background-color: #549D53;
+    color: #E5EFD2;
     margin-top: 50px;
     margin-bottom: 50px;
 }
 tbody {
     border-collapse: collapse;
+    border: 2.5px solid black;
 }
 #submiteeSpreadSheet, th, tr {
     border: 1px solid black;
@@ -38,9 +39,19 @@ tbody {
     display: block;
 }
 th {
-    background-color: gainsboro;
+    background-color: #4B8C4A;
+    border: 2px solid black;
 }
 
+
 #totalMonthlySalary{
-    text-align: left;
+    text-align: right;
+    margin-right: 10%;
+    display: inline-flex;
+    
+}
+tr:nth-child(even) {background-color: #559E54;}
+
+tbody{
+    background-color: #D4F7D4;
 }
